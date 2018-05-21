@@ -1,0 +1,129 @@
+* {
+  margin: none;
+  border: none;
+
+  font-family: sans-serif;
+  font-size: 20px;
+}
+
+/* temp */
+
+.interactiveElement {
+  background: gray;
+}
+
+.interactiveElement:hover {
+  background: black;
+}
+
+/* */
+
+#center {
+  width: 300px;
+  position: absolute;
+
+  margin: -150px 0 0 -150px;
+  left: 50%;
+  top: 50%;
+  background: black;
+  border-radius: 15px;
+
+}
+
+#colorInfo {
+  border-radius: 15px;
+  height: 25px;
+  width: 100%;
+  margin-bottom: 5px;
+  overflow: hidden;
+
+  text-align: center;
+  line-height: 25px;
+}
+
+#output {
+  height: 275px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  overflow: hidden;
+}
+
+#output * {
+
+}
+
+#fields {
+  resize: none;
+  width: 50%;
+  height: 50px;
+
+  border-bottom-right-radius: 15px;
+  border-top-right-radius: 15px;
+  outline: none;
+  overflow: hidden;
+
+  float: left;
+}
+
+#fields * {
+  background: inherit;
+  text-align: center;
+  line-height: 25px;
+  overflow: hidden;
+  width: 100%;
+}
+
+#fieldLabels {
+  width: 50%;
+  float: left;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+}
+
+#fieldLabels * {
+  height: 25px;
+  vertical-align: center;
+  text-align: center;
+  line-height: 25px;
+}
+
+.colorSlider {
+  margin-left: -1px;
+
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  height: 25px;
+}
+
+.colorSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 80%;
+  background: white;
+  margin-bottom: 10%;
+}
+
+#generate {
+  width: 100%;
+  height: 50px;
+
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  outline: none;
+
+  text-align: center;
+  line-height: 25px;
+
+  float: left;
+
+  margin-bottom: 5px;
+}
+
+.colorBox {
+  width: 100px;
+  height: 100%;
+  float: right;
+
+}
