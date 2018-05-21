@@ -1,0 +1,2 @@
+# colorPaletteGenerator
+Makes colors
