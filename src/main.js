@@ -8,8 +8,11 @@
 // use the enter and space key to generate colors
 // I need to change the scheme so it looks like a webpage
 // save colors to the right and move the generator to the left
+<<<<<<< HEAD
 // make a function to convert hsl to rgb you lazy heck
 // live update the colors with value sliders
+=======
+>>>>>>> 7e4a6ff1a9c8221ced67c4fec79d519b2c6c40be
 
 function init() {
   // event listeners
@@ -111,6 +114,6 @@ function updateSliders(pass) {
 }
 
 function updateRange(_) {
-  
+
 }
 //setInterval(loop, 100)
