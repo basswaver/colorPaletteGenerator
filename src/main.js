@@ -3,14 +3,33 @@
 // detect element clicked on to copy color of element to clippy boy
 // split up the sliders and the generate button so that the sliders are seperate
 // find some way to show the slider variables next to the label
-// im only doing 3 columns for the future
+// im only doing 3 columns for the future... maybe
+// I need to figure out my color scheme, probably something with warm/cool grey material
+// use the enter and space key to generate colors
+// I need to change the scheme so it looks like a webpage
+// save colors to the right and move the generator to the left
+// make a function to convert hsl to rgb you lazy heck
+// live update the colors with value sliders
+
 function init() {
   // event listeners
-  document.getElementById("generate").addEventListener("click", drawBoxesPass);
-  //document.getElementById("output").addEventListener("click", drawBoxesPass);
 
-  //generate a box on load
+  // click generate
+  document.getElementById("generate").addEventListener("click", drawBoxesPass);
+
+  // click in the input sliders area
+  // this has the potential to be really slow so I should change it later
+  // or not I don't care that much
+  document.getElementById("variables").addEventListener("mousemove", updateSliders);
+
+  // change in range changes color
+  document.getElementById("range").addEventListener("mouseup", updateRange)
+
+  // generate a box on load
   drawBoxes(generateColorHSL())
+
+  // add slider variables on load
+  document.getElementById("rangeVar").innerHTML = " "+document.getElementById("range").value
 }
 
 function parseRGB(rgb) {
@@ -62,6 +81,8 @@ function generateColorHSL(type, columns) {
 }
 
 function drawBoxes(colors) {
+  // dynamic width for more colors
+  document.getElementById("center").style.width = colors.length*100+"px"
 
   document.getElementById("output").innerHTML = ""
 
@@ -85,4 +106,11 @@ function clearColumns() {
   document.getElementById("columns").value = ""
 }
 
+function updateSliders(pass) {
+  document.getElementById(pass.toElement.id+"Var").innerHTML = " "+document.getElementById(pass.toElement.id).value
+}
+
+function updateRange(_) {
+  
+}
 //setInterval(loop, 100)
