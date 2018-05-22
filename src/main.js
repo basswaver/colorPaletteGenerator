@@ -3,11 +3,20 @@
 // detect element clicked on to copy color of element to clippy boy
 // split up the sliders and the generate button so that the sliders are seperate
 // find some way to show the slider variables next to the label
-// im only doing 3 columns for the future
+// im only doing 3 columns for the future... maybe
+// I need to figure out my color scheme, probably something with warm/cool grey material
+// use the enter and space key to generate colors
+// I need to change the scheme so it looks like a webpage
+// save colors to the right and move the generator to the left
+
 function init() {
   // event listeners
+
+  // click generate
   document.getElementById("generate").addEventListener("click", drawBoxesPass);
-  //document.getElementById("output").addEventListener("click", drawBoxesPass);
+
+  //click in the input sliders area
+  document.getElementById("variables").addEventListener("mouseover", updateSliders);
 
   //generate a box on load
   drawBoxes(generateColorHSL())
@@ -85,4 +94,7 @@ function clearColumns() {
   document.getElementById("columns").value = ""
 }
 
+function updateSliders(pass) {
+  document.getElementById("rangeVar").innerHTML = document.getElementById("range").value
+}
 //setInterval(loop, 100)
