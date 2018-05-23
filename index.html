@@ -3,18 +3,26 @@
     <link href="src/main.css" type="text/css" rel="stylesheet">
 </head>
 <body onload="init()">
-  <div id="center">
-    <div class="interactiveElement info fullBorder">my <a href="http://github.com/basswaver">Github</a></div>
-    <div id="output" class="topBorder"></div>
-    <button id="generate" class="interactiveElement bottomBorder">generate</button>
-    <div id="variables">
-      <div class="field fullBorder">
-        <div class="interactiveElement label leftBorder">
-          range<span id="rangeVar"></span>
+  <div id="wrap">
+    <div id="center" class="main">
+      <div class="interactiveElement info fullBorder"><a href="http://github.com/basswaver">GitHub</a></div>
+      <div id="output" class="topBorder"></div>
+      <button id="generate" class="interactiveElement bottomBorder">generate</button>
+      <div id="variables">
+        <div class="field fullBorder">
+          <div class="interactiveElement label leftBorder">
+            range<span id="rangeVar"></span>
+          </div>
+            <input id="range" class="interactiveElement slider rightBorder" value=25 min=0 max=50 type="range"></input>
         </div>
-          <input id="range" class="interactiveElement slider rightBorder" value=25 min=0 max=50 type="range"></input>
       </div>
     </div>
+    <div id="right" class="main">
+      <div id="hex"></div>
+      <div id="rgb"></div>
+      <div id="hsl"></div>
+    </div>
+    <div id="saved" class="main">
+    </div>
   </div>
-  <!-- script src="src/post.js"></script> <-->
 </body>

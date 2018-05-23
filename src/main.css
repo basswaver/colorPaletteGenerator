@@ -14,6 +14,10 @@ a::after {
   content: ""
 }
 
+body {
+  overflow: hidden;
+}
+
 /* temp */
 
 .interactiveElement {
@@ -21,27 +25,25 @@ a::after {
 }
 
 .interactiveElement:hover {
-  background: black;
+  background: rgb(46, 78, 73);
 }
 
 /* */
 
-#center{
+#wrap {
+  height: 80vh;
+  background: rgb(218, 150, 10);
+  margin: 10vh;
+}
+
+#center {
   min-width: 300px;
 }
 
-<<<<<<< HEAD
-=======
-.info {
-  min-height: 25px;
-  width: 100%;
-  margin-bottom: 5px;
-  overflow: hidden;
-
-  text-align: center;
-  line-height: 25px;
+#right {
+ display: block;
+ margin-right: inherit;
 }
->>>>>>> 7e4a6ff1a9c8221ced67c4fec79d519b2c6c40be
 
 #output {
   height: 275px;
@@ -64,6 +66,15 @@ a::after {
   line-height: 25px;
 }
 
+.main {
+  top: 50%;
+  position: absolute;
+  float: left;
+
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
 .slider {
   margin-left: -1px;
 
@@ -84,7 +95,6 @@ a::after {
   background: white;
 }
 
-<<<<<<< HEAD
 .info {
   min-height: 25px;
   width: 100%;
@@ -95,8 +105,6 @@ a::after {
   line-height: 25px;
 }
 
-=======
->>>>>>> 7e4a6ff1a9c8221ced67c4fec79d519b2c6c40be
 
 #generate {
   width: 100%;
