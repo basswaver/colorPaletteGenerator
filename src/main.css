@@ -37,7 +37,10 @@ body {
 }
 
 #center {
-  min-width: 300px;
+  height: 100%;
+  float: left;
+  position: relative;
+  width: 500px;
 }
 
 #right {
@@ -67,7 +70,6 @@ body {
 }
 
 .main {
-  top: 50%;
   position: absolute;
   float: left;
 
@@ -83,6 +85,7 @@ body {
   outline: none;
   height: 25px;
   margin: 0;
+  overflow: hidden;
 
   float: right;
 }
@@ -120,7 +123,6 @@ body {
 }
 
 .colorBox {
-  width: 100px;
   height: 100%;
   float: right;
 
