@@ -4,9 +4,8 @@ function init(){
   document.getElementById("generate").addEventListener("click", drawBoxPass);
   document.getElementById("variables").addEventListener("click", updateSliders);
   document.getElementById("variables").addEventListener("mousemove", updateSliders);
-  document.getElementById("output").addEventListener("click", drawBoxPass);
   // draw elements on load
-  drawBox(generateColorHSL());
+  drawBoxPass();
   // set slider values
   document.getElementById("rangeVar").innerHTML=" "+document.getElementById("range").value;
   document.getElementById("columnsVar").innerHTML=" "+document.getElementById("columns").value;
@@ -81,7 +80,6 @@ function drawBox(colors){
     box='<div class="colorBox" id="colorNum'+l+'"></div>';
     document.getElementById("output").innerHTML+=box;
     document.getElementById("colorNum"+l).style.width=width;
-    console.log(parseHSL(colors[l-1]))
     document.getElementById("colorNum"+l).style.backgroundColor=parseHSL(colors[--l]);
   }
 }
