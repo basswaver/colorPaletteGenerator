@@ -37,15 +37,14 @@ body {
 }
 
 #center {
+  margin-left: -350px;
+  left: 50%;
   height: 100%;
-  float: left;
-  position: relative;
-  width: 500px;
+  width: 700px;
 }
 
-#right {
- display: block;
- margin-right: inherit;
+#left {
+
 }
 
 #output {
@@ -108,9 +107,29 @@ body {
   line-height: 25px;
 }
 
+#buttons{
+  height: 50px;
+  margin-bottom: 5px;
+
+  overflow: hidden;
+}
 
 #generate {
-  width: 100%;
+  width: 90%;
+  height: 100%;
+
+  outline: none;
+
+  text-align: center;
+  line-height: 25px;
+
+  margin-bottom: 5px;
+  float: left;
+
+}
+
+#save {
+  width: 10%;
   height: 50px;
 
   outline: none;
@@ -119,7 +138,7 @@ body {
   line-height: 25px;
 
   margin-bottom: 5px;
-
+  float: right;
 }
 
 .colorBox {
@@ -131,6 +150,7 @@ body {
 .field {
   height: 25px;
   margin-bottom: 5px;
+
 }
 
 .field * {

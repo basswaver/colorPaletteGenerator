@@ -1,9 +1,11 @@
-// works
+// init
+
 function init(){
   // event listeners
   document.getElementById("generate").addEventListener("click", drawBoxPass);
   document.getElementById("variables").addEventListener("click", updateSliders);
   document.getElementById("variables").addEventListener("mousemove", updateSliders);
+  document.getElementById("output").addEventListener("click", reportColors);
   // draw elements on load
   drawBoxPass();
   // set slider values
@@ -17,7 +19,40 @@ function parseHSL(color){
   return `hsl(${color[0]}, ${color[1]}%, ${color[2]}%)`;
 }
 
-// generating
+function parseHEX(rgb){
+  if(rgb.slice(0, 1)=="r"){
+    rgb=deparse(rgb)
+  }
+  var l=rgb.length;
+  while(l>0){
+    rgb[--l]=parseInt(rgb[l]).toString(16);
+    if(rgb[l].length<2){
+      rgb[l]=`0${rgb[l]}`
+    }
+  }
+  return `#${rgb[0]}${rgb[1]}${rgb[2]}`
+}
+
+function deparse(color){
+  color = color.split(" ")
+  color[0] = color[0].slice(4, color[0].length-1)
+  color[1] = color[1].slice(0, color[1].length-1)
+  color[2] = color[2].slice(0, color[2].length-1)
+  return color
+}
+
+// number generation
+
+function generateRange(range, count){
+  range=range/count
+  list=[]
+  while(count>0){
+    list.push(range*count--)
+  }
+  return list
+}
+
+// color generating
 
 function dodge(base, range){
   var ret=[];
@@ -35,15 +70,6 @@ function burn(base, range){
     ret.push([base[0], base[1], base[2]+range[--l]]);
   }
   return ret;
-}
-
-function generateRange(range, count){
-  range=range/count
-  list=[]
-  while(count>0){
-    list.push(range*count--)
-  }
-  return list
 }
 
 function generateColorHSL(count, theme){
@@ -74,7 +100,7 @@ function generateColorHSL(count, theme){
 
 function drawBox(colors){
   var l=colors.length
-  var width=`${500/l}px`
+  var width=`${700/l}px`
   document.getElementById("output").innerHTML="";
   while(l>0){
     box='<div class="colorBox" id="colorNum'+l+'"></div>';
@@ -95,4 +121,9 @@ function updateSliders(loc){
     return;
   }
   document.getElementById(loc+"Var").innerHTML=" "+document.getElementById(loc).value;
+}
+
+function reportColors(loc){
+  loc=loc.toElement;
+  document.getElementById("hex").innerHTML=parseHEX(loc.style.backgroundColor);
 }

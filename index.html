@@ -4,10 +4,18 @@
 </head>
 <body onload="init()">
   <div id="wrap">
+    <div id="left" class="main">
+      <div id="hex">HEXADECIMAL</div>
+      <div id="rgb">RED BLUE GREEN</div>
+      <div id="hsl">HUE SATURATION LIGHTNESS</div>
+    </div>
     <div id="center" class="main">
       <div class="interactiveElement info fullBorder"><a href="http://github.com/basswaver/colorPaletteGenerator">source</a></div>
       <div id="output" class="topBorder"></div>
-      <button id="generate" class="interactiveElement bottomBorder">generate</button>
+      <div id="buttons" class="bottomBorder">
+        <button id="generate" class="interactiveElement">generate</button>
+        <button id="save" class="interactiveElement"></button>
+      </div>
       <div id="variables">
         <div class="field fullBorder">
           <div class="interactiveElement label leftBorder">
@@ -19,14 +27,9 @@
           <div class="interactiveElement label leftBorder">
             columns<span id="columnsVar"></span>
           </div>
-            <input id="columns" class="interactiveElement slider rightBorder" value=7 min=1 max=15 step=1 type="range"></input>
+            <input id="columns" class="interactiveElement slider rightBorder" value=7 min=1 max=15 step=2 type="range"></input>
         </div>
       </div>
-    </div>
-    <div id="right" class="main">
-      <div id="hex"></div>
-      <div id="rgb"></div>
-      <div id="hsl"></div>
     </div>
     <div id="saved" class="main">
     </div>
