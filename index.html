@@ -5,9 +5,8 @@
 <body onload="init()">
   <div id="wrap">
     <div id="left" class="main">
-      <div id="hex">HEXADECIMAL</div>
-      <div id="rgb">RED BLUE GREEN</div>
-      <div id="hsl">HUE SATURATION LIGHTNESS</div>
+      <div id="hex" class="interactiveElement fullBorder colorReport">hex</div>
+      <div id="rgb" class="interactiveElement fullBorder colorReport">rgb</div>
     </div>
     <div id="center" class="main">
       <div class="interactiveElement info fullBorder"><a href="http://github.com/basswaver/colorPaletteGenerator">source</a></div>
@@ -21,13 +20,15 @@
           <div class="interactiveElement label leftBorder">
             range<span id="rangeVar"></span>
           </div>
-            <input id="range" class="interactiveElement slider rightBorder" value=25 min=0 max=50 type="range"></input>
+            <input id="range" class="interactiveElement slider" value=25 default=25 min=0 max=50 type="range"></input>
+            <button id="rangeReset" class="reset interactiveElement rightBorder" value="range">&#x21BA;</button>
         </div>
         <div class="field fullBorder">
           <div class="interactiveElement label leftBorder">
             columns<span id="columnsVar"></span>
           </div>
-            <input id="columns" class="interactiveElement slider rightBorder" value=7 min=1 max=15 step=2 type="range"></input>
+          <input id="columns" class="interactiveElement slider" value=7 default=7 min=1 max=15 step=2 type="range"></input>
+            <button id="columnsReset" class="reset interactiveElement rightBorder" value="columns">&#x21BA;</button>
         </div>
       </div>
     </div>

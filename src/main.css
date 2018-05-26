@@ -33,18 +33,25 @@ body {
 #wrap {
   height: 80vh;
   background: rgb(218, 150, 10);
-  margin: 10vh;
+  margin: 10vh 0;
 }
 
 #center {
-  margin-left: -350px;
   left: 50%;
+  width: 50%;
   height: 100%;
-  width: 700px;
+
+  position: absolute;
 }
 
 #left {
+  width: 25%;
+}
 
+#left * {
+  margin: 0 5px 5px 0;
+  text-align: center;
+  height: 25px;
 }
 
 #output {
@@ -64,45 +71,6 @@ body {
 #fieldLabels * {
   height: 25px;
   vertical-align: center;
-  text-align: center;
-  line-height: 25px;
-}
-
-.main {
-  position: absolute;
-  float: left;
-
-  margin-right: 10px;
-  margin-left: 10px;
-}
-
-.slider {
-  margin-left: -1px;
-
-  -webkit-appearance: none;
-  appearance: none;
-  outline: none;
-  height: 25px;
-  margin: 0;
-  overflow: hidden;
-
-  float: right;
-}
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 25px;
-  height: 100%;
-  background: white;
-}
-
-.info {
-  min-height: 25px;
-  width: 100%;
-  margin-bottom: 5px;
-  overflow: hidden;
-
   text-align: center;
   line-height: 25px;
 }
@@ -141,6 +109,22 @@ body {
   float: right;
 }
 
+.main {
+  position: absolute;
+  float: left;
+
+}
+
+.info {
+  min-height: 25px;
+  width: 100%;
+  margin-bottom: 5px;
+  overflow: hidden;
+
+  text-align: center;
+  line-height: 25px;
+}
+
 .colorBox {
   height: 100%;
   float: right;
@@ -154,14 +138,48 @@ body {
 }
 
 .field * {
-  width: 50%;
+  overflow: hidden;
 }
 
+
 .label {
+  width: 50%;
   height: 100%;
   text-align: center;
 
   float: left;
+}
+
+.slider {
+  margin-left: -1px;
+
+  -webkit-appearance: none;
+  appearance: none;
+  outline: none;
+  height: 25px;
+  margin: 0;
+  overflow: hidden;
+
+  width: 46%;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 100%;
+  background: white;
+}
+
+.reset {
+  height: inherit;
+  width: 4%;
+  float: right;
+}
+
+.colorReport{
+  margin-top: 5px;
+  width:
 }
 
 .topBorder {
