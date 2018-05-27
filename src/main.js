@@ -1,3 +1,7 @@
+// global variables
+
+Global_base_hsl=0
+
 // init
 
 function init(){
@@ -21,8 +25,8 @@ function init(){
 
 // parsing
 
-function parseHSL(color){
-  return `hsl(${color[0]}, ${color[1]}%, ${color[2]}%)`
+function parseHSL(hsl){
+  return `hsl(${hsl[0]}, ${hsl[1]}%, ${hsl[2]}%)`
 }
 
 function parseHEX(rgb){
@@ -40,10 +44,10 @@ function parseHEX(rgb){
 }
 
 function deparse(color){
-  color = color.split(" ")
-  color[0] = color[0].slice(4, color[0].length-1)
-  color[1] = color[1].slice(0, color[1].length-1)
-  color[2] = color[2].slice(0, color[2].length-1)
+  color=color.split(" ")
+  color[0]=parseInt(color[0].slice(4, color[0].length-1))
+  color[1]=parseInt(color[1].slice(0, color[1].length-1))
+  color[2]=parseInt(color[2].slice(0, color[2].length-1))
   return color
 }
 
@@ -78,7 +82,7 @@ function burn(base, range){
   return ret
 }
 
-function generateColorHSL(count, theme){
+function generateColorHSL(count){
   range=parseInt(document.getElementById("range").value)
   if(parseInt(count)==NaN || count==undefined){
     count=3
@@ -102,6 +106,51 @@ function generateColorHSL(count, theme){
   return ret
 }
 
+function updateColorsHSL(color){
+
+}
+
+function RGBtoHSL(rgb){
+  var hsl=[0, 0, 0]
+  var rgb=[rgb[0]/255, rgb[1]/255, rgb[2]/255]
+  var max = arrayMax(rgb)
+  var min = arrayMin(rgb)
+  hsl[2]=(max+min)/2
+  if(rgb[0]==rgb[1]&&rgb[1]==rgb[2]){
+    return hsl
+  }
+  if(hsl[2]<=0.5){
+    hsl[1]=(max-min)/max+min
+  }
+  if(hsl[2]>0.5){
+    hsl[1]=(max-min)/(2-max-min)
+  }
+  hsl[1]=Math.round(hsl[1]*100)
+  hsl[2]=Math.round(hsl[2]*100)
+  var maxIndex=rgb.indexOf(max)
+  if(maxIndex==0){
+    hsl[0]=Math.floor(((rgb[1]-rgb[2])/(max-min))*60)
+    if(hsl[0]<0){
+      hsl[0]+=360
+    }
+    return hsl
+  }
+  if(maxIndex==1){
+    hsl[0]=Math.floor((2+((rgb[2]-rgb[0])/(max-min)))*60)
+    if(hsl[0]<0){
+      hsl[0]+=360
+    }
+    return hsl
+  }
+  if(maxIndex==2){
+    hsl[0]=Math.floor((4+((rgb[0]-rgb[1])/(max-min)))*60)
+    if(hsl[0]<0){
+      hsl[0]+=360
+    }
+    return hsl
+  }
+}
+
 // DOM interaction
 
 function centerGenerator(){
@@ -112,8 +161,7 @@ function centerGenerator(){
 }
 
 function drawBox(colors){
-  centerWidth = window.getComputedStyle(document.getElementById("center")).width.slice(0, -2)
-  console.log(centerWidth)
+  centerWidth=window.getComputedStyle(document.getElementById("center")).width.slice(0, -2)
   var l=colors.length
   var width=`${100/l}%`
   document.getElementById("output").innerHTML=""
@@ -152,4 +200,28 @@ function reportColors(loc){
   }
   document.getElementById("hex").innerHTML=parseHEX(loc.style.backgroundColor)
   document.getElementById("rgb").innerHTML=loc.style.backgroundColor
+  document.getElementById("hsl").innerHTML=parseHSL(RGBtoHSL(deparse(loc.style.backgroundColor)))
+}
+// data
+
+function arrayMin(array){
+  var ret=array[0]
+  var l=array.length
+  while(l>1){
+    if(array[--l]<ret){
+      ret=array[l]
+    }
+  }
+  return ret
+}
+
+function arrayMax(array){
+  var ret=array[0]
+  var l=array.length
+  while(l>1){
+    if(array[--l]>ret){
+      ret=array[l]
+    }
+  }
+  return ret
 }
