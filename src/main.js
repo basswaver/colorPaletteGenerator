@@ -5,17 +5,17 @@ global_saved_colors=[]
 global_slider_defaults={
   "range":25,
   "columns":7,
-  "saturation":50
+  "saturation":85
 }
 
 // init
 
 function init(){
   // event listeners
-  document.getElementById("generate").addEventListener("click", drawBoxPass)
+  document.getElementById("generate").addEventListener("mousedown", drawBoxPass)
   document.getElementById("variables").addEventListener("click", updateSliders)
   document.getElementById("variables").addEventListener("mousemove", updateSliders)
-  document.getElementById("output").addEventListener("click", reportColors)
+  document.getElementById("output").addEventListener("mousedown", reportColors)
   //reset buttons
   document.getElementById("rangeReset").addEventListener("click", resetSliders)
   document.getElementById("columnsReset").addEventListener("click", resetSliders)

@@ -2,7 +2,6 @@
 Makes colors
 
 # todo
-- add saturation sliders
 - make one formatting function to replace the parsing ones
 
 # underway
@@ -10,6 +9,7 @@ Makes colors
 - conversion functions
 
 # done
+- add saturation sliders
 - live-updating sliders
 - add a todo list
 - RGB to HSL
