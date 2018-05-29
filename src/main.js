@@ -1,6 +1,7 @@
 // global variables
 
-Global_base_hsl=0
+global_base_hsl=0
+global_saved_colors=[]
 
 // init
 
@@ -91,9 +92,10 @@ function generateColorHSL(count){
     Math.floor(Math.random()*360),
     100,
     50]
+  global_base_hsl=base
   c=(count-1)/2
-  dark=burn(base, generateRange(range, c))
-  light=dodge(base, generateRange(range, c))
+  var dark=burn(base, generateRange(range, c))
+  var light=dodge(base, generateRange(range, c))
   var l=c
   var ret=[]
   while(l>0){
@@ -106,8 +108,22 @@ function generateColorHSL(count){
   return ret
 }
 
-function updateColorsHSL(color){
-
+function updateColorsHSL(){
+  var base=global_base_hsl
+  var range=parseInt(document.getElementById("range").value)
+  var col=(parseInt(document.getElementById("columns").value)-1)/2
+  var dark=burn(base, generateRange(range, col))
+  var light=dodge(base, generateRange(range, col))
+  var ret=[]
+  var l=col
+  while(l>0){
+    ret.push(light[--l])
+  }
+  ret.push(base)
+  while(l<col){
+    ret.push(dark[l++])
+  }
+  return ret
 }
 
 function RGBtoHSL(rgb){
@@ -183,6 +199,7 @@ function updateSliders(loc){
   values=["range", "columns"]
   if(values.indexOf(loc)!=-1){
     document.getElementById(`${loc}Var`).innerHTML=" "+document.getElementById(loc).value
+    drawBox(updateColorsHSL())
   }
 }
 
@@ -190,6 +207,7 @@ function resetSliders(loc){
   loc=loc.toElement.value
   document.getElementById(loc).value=document.getElementById(loc).default
   document.getElementById(`${loc}Var`).innerHTML=` ${document.getElementById(loc).value}`
+  drawBox(updateColorsHSL())
 }
 
 function reportColors(loc){
