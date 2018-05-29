@@ -2,8 +2,8 @@
 Makes colors
 
 # todo
-- make one formatting function to replace the parsing ones
 - add saturation sliders
+- make one formatting function to replace the parsing ones
 
 # underway
 - saving colors

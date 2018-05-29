@@ -2,6 +2,11 @@
 
 global_base_hsl=0
 global_saved_colors=[]
+global_slider_defaults={
+  "range":25,
+  "columns":7,
+  "saturation":50
+}
 
 // init
 
@@ -14,13 +19,13 @@ function init(){
   //reset buttons
   document.getElementById("rangeReset").addEventListener("click", resetSliders)
   document.getElementById("columnsReset").addEventListener("click", resetSliders)
+  document.getElementById("saturationReset").addEventListener("click", resetSliders)
   // draw elements on load
   centerGenerator()
+  setSliders()
   drawBoxPass()
   reportColors("init")
   // set slider values
-  document.getElementById("rangeVar").innerHTML=" "+document.getElementById("range").value
-  document.getElementById("columnsVar").innerHTML=" "+document.getElementById("columns").value
   setInterval(centerGenerator, 100)
 }
 
@@ -90,7 +95,7 @@ function generateColorHSL(count){
   }
   base=[
     Math.floor(Math.random()*360),
-    100,
+    parseInt(document.getElementById("saturation").value),
     50]
   global_base_hsl=base
   c=(count-1)/2
@@ -109,6 +114,7 @@ function generateColorHSL(count){
 }
 
 function updateColorsHSL(){
+  global_base_hsl[1]=parseInt(document.getElementById("saturation").value)
   var base=global_base_hsl
   var range=parseInt(document.getElementById("range").value)
   var col=(parseInt(document.getElementById("columns").value)-1)/2
@@ -196,17 +202,28 @@ function drawBoxPass(){
 
 function updateSliders(loc){
   loc=loc.toElement.id
-  values=["range", "columns"]
+  values=["range", "columns", "saturation"]
   if(values.indexOf(loc)!=-1){
     document.getElementById(`${loc}Var`).innerHTML=" "+document.getElementById(loc).value
     drawBox(updateColorsHSL())
   }
 }
 
+function setSliders(){
+  keys=Object.keys(global_slider_defaults)
+  l=keys.length
+  while(l>0){
+    v=global_slider_defaults[keys[--l]]
+    console.log(`${keys[l]}Var`)
+    document.getElementById(`${keys[l]}`).value=v
+    document.getElementById(`${keys[l]}Var`).innerHTML=` ${v}`
+  }
+}
+
 function resetSliders(loc){
   loc=loc.toElement.value
-  document.getElementById(loc).value=document.getElementById(loc).default
-  document.getElementById(`${loc}Var`).innerHTML=` ${document.getElementById(loc).value}`
+  document.getElementById(loc).value=global_slider_defaults[loc]
+  document.getElementById(`${loc}Var`).innerHTML=` ${global_slider_defaults[loc]}`
   drawBox(updateColorsHSL())
 }
 
@@ -220,6 +237,7 @@ function reportColors(loc){
   document.getElementById("rgb").innerHTML=loc.style.backgroundColor
   document.getElementById("hsl").innerHTML=parseHSL(RGBtoHSL(deparse(loc.style.backgroundColor)))
 }
+
 // data
 
 function arrayMin(array){
