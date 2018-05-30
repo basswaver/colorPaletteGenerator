@@ -43,6 +43,7 @@ button {
 /* */
 
 #wrap {
+  overflow-y: hidden;
   height: 80vh;
   background: rgb(218, 150, 10);
   margin: 10vh 0;
@@ -128,9 +129,21 @@ button {
   float: right;
 }
 
-#saved {
+#savedInfo {
   margin: 0 0 5px 5px;
   height: 25px;
+  overflow: hidden;
+}
+
+#savedLabel {
+  float: left;
+  width: 85%;
+}
+
+#savedClear {
+  float: right;
+  line-height: 25px;
+  width: 15%;
 }
 
 #list {
@@ -207,30 +220,34 @@ button {
 
 .colorReport{
   margin-top: 5px;
-  width:
-}
-
-nfo {
-  width: 50%;
-  position: relative;
 }
 
 .savedColor {
+  width: 48%;
+  display: block;
+  margin: 0 2% 2% 0;
+  float: left;
   overflow: auto;
-  margin-bottom: 5px;
-  width: 100%;
 }
 
 .savedInfo {
-  width: 60%;
+  width: 100%;
   overflow: hidden;
   float: left;
 }
 
 .savedInfo * {
   display: block;
-  height: 25px;
+  height: 30px;
   width: 100%;
+}
+
+.buttonRestore {
+  text-align: left;
+}
+
+.buttonRemove {
+  text-align: right;
 }
 
 .typeSpan {
@@ -259,9 +276,9 @@ nfo {
   float: left;
 }
 
-.savedPreview {
+.saveColorview {
   width: 40%;
-  height: 75px;
+  height: 100px;
   float: right;
   background: black;
 }

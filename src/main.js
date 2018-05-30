@@ -16,7 +16,8 @@ function init(){
   document.getElementById("variables").addEventListener("click", updateSliders)
   document.getElementById("output").addEventListener("mousedown", reportColors)
   document.getElementById("variables").addEventListener("mousemove", updateSliders)
-  document.getElementById("save").addEventListener("mousedown", saveColors)
+  document.getElementById("save").addEventListener("mousedown", saveColor)
+  document.getElementById("savedClear").addEventListener("mousedown", clearSavedColors)
   //reset buttons
   document.getElementById("rangeReset").addEventListener("click", resetSliders)
   document.getElementById("columnsReset").addEventListener("click", resetSliders)
@@ -26,8 +27,7 @@ function init(){
   setSliders()
   drawBoxPass()
   reportColors("init")
-  // set slider values
-  setInterval(centerGenerator, 100)
+  setInterval(centerGenerator, 10)
 }
 
 // parsing
@@ -58,7 +58,8 @@ function deparse(color){
   return color
 }
 
-// number generation
+
+// color generating
 
 function generateRange(range, count){
   range=range/count
@@ -68,8 +69,6 @@ function generateRange(range, count){
   }
   return list
 }
-
-// color generating
 
 function dodge(base, range){
   var ret=[]
@@ -176,13 +175,31 @@ function RGBtoHSL(rgb){
 
 // DOM interaction
 
-function saveColors(){
+function restoreColor(loc){
+  var color=document.getElementById(`saved${loc}`).children[0].children[0].style.backgroundColor
+  var color=RGBtoHSL(deparse(color))
+  global_base_hsl=color
+  drawBox(updateColorsHSL(color))
+}
+
+function removeColor(loc){
+  var parent=document.getElementById("list")
+  var rem=document.getElementById(`saved${loc}`)
+  global_saved_colors.splice(loc, 1)
+  parent.removeChild(rem)
+  console.log(rem)
+}
+
+function clearSavedColors(){
+  document.getElementById("list").innerHTML=""
+  global_saved_colors=[]
+}
+
+function saveColor(){
   var base=global_base_hsl
   var baseHSL=parseHSL(global_base_hsl)
   var baseRGB=document.getElementById(`colorNum${(parseInt(document.getElementById("columns").value)+1)/2}`).style.backgroundColor
   var baseHEX=parseHEX(deparse(baseRGB))
-  base[1]=100
-  console.log(global_saved_colors.indexOf(base))
   if(global_saved_colors.indexOf(base)!=-1){
     return
   }
@@ -192,19 +209,18 @@ function saveColors(){
     old=document.getElementById("list").innerHTML
   }
   var l=global_saved_colors.length
-  var template=`
+  var template=`${old}
   <div id="saved${l}" class="savedColor">
-    <div class="savedInfo leftBorder">
-      <span class="infoHEX interactiveElement">${baseHEX}</span>
-      <span class="infoRGB interactiveElement">${baseRGB}</span>
-      <span class="infoHSL interactiveElement">${baseHSL}</span>
+    <div class="savedInfo fullBorder">
+      <span id="savedPreview${l}"></span>
+      <span class="infoHEX interactiveElement">${baseHEX.toUpperCase()}</span>
+      <button id="restore${l}" onClick="restoreColor(${l})" class="buttonRestore interactiveElement">+</button>
+      <button id="remove${l}" onClick="removeColor(${l})" class="buttonRemove interactiveElement">-</button>
     </div>
-    <div class="savedPreview rightBorder"></div>
-  </div>${old}`
+  </div>`
   document.getElementById("list").innerHTML=template
   global_saved_colors.push(base)
-  var loc=document.getElementById(`saved${l}`)
-  loc.children[1].style.backgroundColor=parseHSL(base)
+  document.getElementById(`savedPreview${l}`).style.backgroundColor=parseHSL(base)
 }
 
 function centerGenerator(){
@@ -243,10 +259,9 @@ function updateSliders(loc){
 
 function setSliders(){
   keys=Object.keys(global_slider_defaults)
-  l=keys.length
+  var l=keys.length
   while(l>0){
     v=global_slider_defaults[keys[--l]]
-    console.log(`${keys[l]}Var`)
     document.getElementById(`${keys[l]}`).value=v
     document.getElementById(`${keys[l]}Var`).innerHTML=` ${v}`
   }
@@ -271,6 +286,19 @@ function reportColors(loc){
 }
 
 // data
+
+function inArray(value, array){
+  var l=array.length
+  if(l==0){
+    return false
+  }
+  while(l>0){
+    if(array[--l]===value){
+      return true
+    }
+  }
+  return false
+}
 
 function arrayMin(array){
   var ret=array[0]

@@ -3,16 +3,21 @@ Makes colors
 Currently only being tested in chromium
 
 # todo
-- make one formatting function to replace the parsing ones
 - reevaluate use of * in css
-- add a function to clear saved colors
+- make a mobile layout
+- generate multiple palettes stacked on top of each other
 - be able to export saved colors to another file
+- make floating right and left into it's own css class
+- make one formatting function to replace the parsing ones
 
 # underway
-- saving colors
 - conversion functions
+- make the saved colors nicer looking
 
 # done
+- add a function to clear saved colors
+- be able to restore and remove individual colors
+- saving colors
 - added snippets because I want to save things
 - add saturation sliders
 - live-updating sliders
@@ -23,3 +28,5 @@ Currently only being tested in chromium
 
 # known bugs
 - scrollbar will appear in browsers that are not chrome
+- can't change saturation and re-save as a new color
+- can add element twice by restoring to a colorl and adding it
