@@ -18,6 +18,18 @@ body {
   overflow: hidden;
 }
 
+button {
+  outline: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+::-webkit-scrollbar-thumb {
+  display: none;
+}
+
 /* temp */
 
 .interactiveElement {
@@ -54,6 +66,17 @@ body {
   height: 25px;
 }
 
+#right {
+  position: absolute;
+  right: 0%;
+  width: 25%;
+}
+
+#right * {
+  text-align: center;
+  line-height: 25px;
+}
+
 #output {
   height: 275px;
   overflow: hidden;
@@ -86,8 +109,6 @@ body {
   width: 90%;
   height: 100%;
 
-  outline: none;
-
   text-align: center;
   line-height: 25px;
 
@@ -100,13 +121,21 @@ body {
   width: 10%;
   height: 50px;
 
-  outline: none;
-
   text-align: center;
   line-height: 25px;
 
   margin-bottom: 5px;
   float: right;
+}
+
+#saved {
+  margin: 0 0 5px 5px;
+  height: 25px;
+}
+
+#list {
+  margin: 0 0 5px 5px;
+  overflow-y: scroll;
 }
 
 .main {
@@ -115,7 +144,7 @@ body {
 
 }
 
-.info {
+.source {
   min-height: 25px;
   width: 100%;
   margin-bottom: 5px;
@@ -155,7 +184,6 @@ body {
 
   -webkit-appearance: none;
   appearance: none;
-  outline: none;
   height: 25px;
   margin: 0;
   overflow: hidden;
@@ -180,6 +208,62 @@ body {
 .colorReport{
   margin-top: 5px;
   width:
+}
+
+nfo {
+  width: 50%;
+  position: relative;
+}
+
+.savedColor {
+  overflow: auto;
+  margin-bottom: 5px;
+  width: 100%;
+}
+
+.savedInfo {
+  width: 60%;
+  overflow: hidden;
+  float: left;
+}
+
+.savedInfo * {
+  display: block;
+  height: 25px;
+  width: 100%;
+}
+
+.typeSpan {
+  float: left;
+  width: 25%;
+
+  text-align: left;
+}
+
+.colorSpan {
+  float: left;
+  width: 50%;
+
+  text-align: center;
+}
+
+.copySpan {
+  float: right;
+  width: 25%;
+
+  text-align: right;
+}
+
+.savedInfo button {
+  width: 50%;
+  float: left;
+}
+
+.savedPreview {
+  width: 40%;
+  height: 75px;
+  float: right;
+  background: black;
 }
 
 .topBorder {

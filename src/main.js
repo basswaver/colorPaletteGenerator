@@ -14,8 +14,9 @@ function init(){
   // event listeners
   document.getElementById("generate").addEventListener("mousedown", drawBoxPass)
   document.getElementById("variables").addEventListener("click", updateSliders)
-  document.getElementById("variables").addEventListener("mousemove", updateSliders)
   document.getElementById("output").addEventListener("mousedown", reportColors)
+  document.getElementById("variables").addEventListener("mousemove", updateSliders)
+  document.getElementById("save").addEventListener("mousedown", saveColors)
   //reset buttons
   document.getElementById("rangeReset").addEventListener("click", resetSliders)
   document.getElementById("columnsReset").addEventListener("click", resetSliders)
@@ -141,10 +142,10 @@ function RGBtoHSL(rgb){
   if(rgb[0]==rgb[1]&&rgb[1]==rgb[2]){
     return hsl
   }
-  if(hsl[2]<=0.5){
+  if(hsl[2]<0.5){
     hsl[1]=(max-min)/max+min
   }
-  if(hsl[2]>0.5){
+  if(hsl[2]>=0.5){
     hsl[1]=(max-min)/(2-max-min)
   }
   hsl[1]=Math.round(hsl[1]*100)
@@ -174,6 +175,37 @@ function RGBtoHSL(rgb){
 }
 
 // DOM interaction
+
+function saveColors(){
+  var base=global_base_hsl
+  var baseHSL=parseHSL(global_base_hsl)
+  var baseRGB=document.getElementById(`colorNum${(parseInt(document.getElementById("columns").value)+1)/2}`).style.backgroundColor
+  var baseHEX=parseHEX(deparse(baseRGB))
+  base[1]=100
+  console.log(global_saved_colors.indexOf(base))
+  if(global_saved_colors.indexOf(base)!=-1){
+    return
+  }
+  if(global_saved_colors.length==0){
+    old=""
+  } else{
+    old=document.getElementById("list").innerHTML
+  }
+  var l=global_saved_colors.length
+  var template=`
+  <div id="saved${l}" class="savedColor">
+    <div class="savedInfo leftBorder">
+      <span class="infoHEX interactiveElement">${baseHEX}</span>
+      <span class="infoRGB interactiveElement">${baseRGB}</span>
+      <span class="infoHSL interactiveElement">${baseHSL}</span>
+    </div>
+    <div class="savedPreview rightBorder"></div>
+  </div>${old}`
+  document.getElementById("list").innerHTML=template
+  global_saved_colors.push(base)
+  var loc=document.getElementById(`saved${l}`)
+  loc.children[1].style.backgroundColor=parseHSL(base)
+}
 
 function centerGenerator(){
   center=document.getElementById("center")

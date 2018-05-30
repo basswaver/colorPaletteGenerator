@@ -5,16 +5,17 @@
 <body onload="init()">
   <div id="wrap">
     <div id="left" class="main">
+      <div id="reportLabel" class="interactiveElement fullBorder colorReport">Current</div>
       <div id="hex" class="interactiveElement fullBorder colorReport"></div>
       <div id="rgb" class="interactiveElement fullBorder colorReport"></div>
       <div id="hsl" class="interactiveElement fullBorder colorReport"></div>
     </div>
     <div id="center" class="main">
-      <div class="interactiveElement info fullBorder"><a href="http://github.com/basswaver/colorPaletteGenerator">source</a></div>
+      <div class="interactiveElement source fullBorder"><a href="http://github.com/basswaver/colorPaletteGenerator">source</a></div>
       <div id="output" class="topBorder"></div>
       <div id="buttons" class="bottomBorder">
         <button id="generate" class="interactiveElement">generate</button>
-        <button id="save" class="interactiveElement"></button>
+        <button id="save" class="interactiveElement">save</button>
       </div>
       <div id="variables">
         <div class="field fullBorder">
@@ -41,6 +42,13 @@
       </div>
     </div>
     <div id="right" class="main">
+      <div id="saved" class="interactiveElement fullBorder">
+        Saved
+      </div>
+      <div id="list">
+        <div id="saved0" class="savedColor">
+        </div>
+      </div>
     </div>
   </div>
 </body>
